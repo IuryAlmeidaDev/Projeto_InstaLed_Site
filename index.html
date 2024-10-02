@@ -7,10 +7,12 @@
     <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
 </head>
 <body>
-    <h1>Controle de LED ESP32</h1>
-    <button id="turnOn" class="button on">Ligar LED</button>
-    <button id="turnOff" class="button off">Desligar LED</button>
-
+    <h1>Controle de LED - ESP32</h1>
+    <img src="esp32_image.png" alt="ESP32" class="esp32-image" /> <!-- Certifique-se de ter a imagem no mesmo diretório -->
+    <div class="button-container">
+        <button id="turnOn" class="button on">Ligar LED</button>
+        <button id="turnOff" class="button off">Desligar LED</button>
+    </div>
     <div class="status" id="ledStatus">Status do LED: Desconhecido</div>
 
     <script src="script.js"></script> <!-- Mover o script para o final do body -->
