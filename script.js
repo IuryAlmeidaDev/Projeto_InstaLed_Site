@@ -1,4 +1,4 @@
-const apiUrl = 'https://apiteste-qlxu.onrender.com'; // Sua URL base da API
+const apiUrl = 'https://apiteste-0dlj.onrender.com'; // Nova URL base da API
 
 // Função para ligar o LED
 async function turnOnLed() {
