@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de LED ESP32</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        .button {
+            padding: 15px 30px;
+            font-size: 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+        .on {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .off {
+            background-color: #f44336;
+            color: white;
+        }
+        .status {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Controle de LED ESP32</h1>
+    <button id="turnOn" class="button on">Ligar LED</button>
+    <button id="turnOff" class="button off">Desligar LED</button>
+
+    <div class="status" id="ledStatus">Status do LED: Desconhecido</div>
+
+    <script>
+        const apiUrl = 'https://apiteste-qlxu.onrender.com'; // Sua URL base da API
+
+        // Função para ligar o LED
+        async function turnOnLed() {
+            try {
+                const response = await fetch(`${apiUrl}/led/on`, { method: 'POST' });
+                if (response.ok) {
+                    document.getElementById('ledStatus').innerText = 'Status do LED: Ligado';
+                }
+            } catch (error) {
+                console.error('Erro ao ligar o LED:', error);
+            }
+        }
+
+        // Função para desligar o LED
+        async function turnOffLed() {
+            try {
+                const response = await fetch(`${apiUrl}/led/off`, { method: 'POST' });
+                if (response.ok) {
+                    document.getElementById('ledStatus').innerText = 'Status do LED: Desligado';
+                }
+            } catch (error) {
+                console.error('Erro ao desligar o LED:', error);
+            }
+        }
+
+        // Função para obter o estado atual do LED
+        async function getLedState() {
+            try {
+                const response = await fetch(`${apiUrl}/led/state`);
+                const data = await response.json();
+                const status = data.state ? 'Ligado' : 'Desligado';
+                document.getElementById('ledStatus').innerText = `Status do LED: ${status}`;
+            } catch (error) {
+                console.error('Erro ao obter o estado do LED:', error);
+            }
+        }
+
+        // Adicionar eventos aos botões
+        document.getElementById('turnOn').addEventListener('click', turnOnLed);
+        document.getElementById('turnOff').addEventListener('click', turnOffLed);
+
+        // Obter o estado inicial do LED ao carregar a página
+        getLedState();
+    </script>
+</body>
+</html>
