@@ -1,4 +1,4 @@
-const apiUrl = 'https://projeto-instaled-api-1.onrender.com/'; // Nova URL base da API
+const apiUrl = 'https://projeto-instaled-api-1.onrender.com'; // Nova URL base da API
 
 // Função para ligar o LED
 async function turnOnLed() {
